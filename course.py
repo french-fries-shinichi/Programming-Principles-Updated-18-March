@@ -33,7 +33,7 @@ def add_course(): #Function for adding a course
         
       while status:
         course_num = int(input("Insert the course number: ")) #Takes the course number as the input
-        if course_num.isdigit() and len(str(course_num)) != 4:
+        if str(course_num).isdigit() and len(str(course_num)) != 4:
           print("Invalid input! Please try again.") #Loops until the input is valid
         else:
           break #Exits the loop
