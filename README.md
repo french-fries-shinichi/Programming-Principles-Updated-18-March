@@ -1,6 +1,34 @@
 ## Final Project for ...
 can't bother to finish the rest.
 
+### Our program should...
+do the following:
+- Add students
+  - student name should start with capital letters, can contain spaces, cannot contain
+    numbers or symbols
+  - student ID should contain only numbers, have a length of 6 digits
+  - student age should be a positive integer, within the range of 0 <= age <= 100
+  - student email should follow this function's output:
+    re.match(r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$', email)
+- Add courses
+  - course code should contain only capital letters, and be 3 letters in length
+  - course number should consist of a 4 digits number
+  - course name should consist of letters and space
+  - value of total seats should equal to available seats + number of students enrolled in
+    the course (ignore for now...)
+- Enrolling students (into a course)
+  - 
+- Dropping a student from a course
+  - 
+- viewing available courses
+  - 
+- view student information
+  - 
+- Exiting the program gracefully
+  - (since we close files after an action is done, all there is to do is just trigger the
+    system's exit function)
+  - print a goodbye message
+
 ### Bugs to hunt down
 no bounties offered
 - [Optional] perferrably, enroll() function should ask for student ID instead, since it's less
@@ -28,8 +56,3 @@ care, then go back to kindergarten)
  they are not neccessary for our project's goals)
 - Ability to delete entries into the table files (they were going to be added, but...)
 - 
-
-### errors resolved:
-- No age range verification (ie not allowing any integers; for example a baby can't be a student!)
-- names (for add_course func) accepts symbol characters, is this intented?
-  and do we limit all or some symbols?
