@@ -45,10 +45,23 @@ def add_course(): #Function for adding a course
         else:
           print("Invalid input! Please try again.") #Loops again until the input is valid
     
+      while status: 
+        try:
+          seats = int(input("Insert the available seats: ")) #Takes the course name as the input from the user 
+        except ValueError:
+          print("Invalid input! Please try again.") #Loops again until the input is valid
+        else:
+          break
+
     except ValueError:
       print("Invalid input! Please try again.") #Loops until the input is valid
     else:
-      mix = [course_code, course_num, course_name, 30] #Variable that combines the course name, course number and seats available into a list
+      with open('courses.csv') as index_obj:
+        csv_reader = reader(index_obj, delimiter=',')
+        count = 0
+        for row in csv_reader:
+          count += 1
+      mix = [int(count), course_code, course_num, course_name, seats, seats] #Variable that combines the course name, course number and seats available into a list
       with open('courses.csv', 'a') as object: #Opens the courses.csv file in append mode
         writer_object = writer(object) #Defines the file that will be written to
         writer_object.writerow(mix) #Writes mix into the file

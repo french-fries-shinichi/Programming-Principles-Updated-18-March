@@ -23,7 +23,7 @@ def clear(): #defines out clear function
 ## this function is just so that the below works, should move somewhere more sensible
 
 
-def add_student():
+def add_student(): # Function to add a student into the system
   clear() #Clears the screen
   status = True
   print("\nAdding a new student") # Title
@@ -31,11 +31,16 @@ def add_student():
     try:
       while status:
         name = input("Name: ") # Takes the name as the input
-        if name[0].isupper(): # If the first character is in upper case, the program will not loop
+        if name[0].isupper() and name.isalpha(): # If the first character is in upper case, the program will not loop
           status = False #Exits the while loop
         else:
           print("Invalid name! Please try again.") # If the first character is in lower case, the program will prompt the user to input the name again
-      age = int(input("Age: ")) # Takes the age as the input
+      while True:
+        age = int(input("Age: ")) # Takes the age as the input
+        if age < 0 or age > 100:
+          print("Invalid age! Please try again.")
+        else:
+          break
       while status is False: 
         email = input("Email: ") # Takes the email address as the input
         valid = re.match(r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$', email)
@@ -46,8 +51,17 @@ def add_student():
     except ValueError:
       print("Invalid input! Please try again.") # If the age is not an integer, the user has to type it in again
     else:
-      mix = [name, age, email] # Creates a variable that puts the name, age and email address into a list
-      with open('student.csv', 'a') as f_object: # Opens a file named student.csv in append mode
+      with open('students.csv') as index_obj:
+        csv_reader = reader(index_obj, delimiter=',')
+        count = 0
+        for row in csv_reader:
+          if count == 1:
+            if row[1] == "":
+              student_id = 20000
+          count += 1
+          student_id = row[1] 
+      mix = [count, int(student_id) + 1, name, age, email] # Creates a variable that puts the name, age and email address into a list
+      with open('students.csv', 'a') as f_object: # Opens a file named student.csv in append mode
         writer_object = writer(f_object) # Defines the file that would be written to
         writer_object.writerow(mix) # Writes the student's information to the file
       print("Added successfully!\n") # Message that indicates that the information is added successfully
